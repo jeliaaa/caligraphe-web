@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface StatisticData {
     title: string;
@@ -13,18 +13,22 @@ const StatisticSection: React.FC = () => {
     const gap = 20; // This is the space you want to leave in the circle, in percentage.
 
     // Mock API data
-    const mockApiData: StatisticData[] = [
+    const mockApiData = useMemo(() => [
         { title: 'შესრულებული რემონტი', value: 150, total: 120 },
         { title: 'ახალი მომხმარებელი', value: 210, total: 150 },
         { title: 'ახალი დასაქმებული', value: 1000, total: 200 },
-    ];
+    ], []);
 
-    // Simulating an API call
-    useEffect(() => {
+    // Using useCallback to fetch the statistics
+    const fetchStatistics = useCallback(() => {
         setTimeout(() => {
             setStatistics(mockApiData);
         }, 1000); // Simulating 1 second delay for data fetch
-    }, []);
+    }, [mockApiData]);
+
+    useEffect(() => {
+        fetchStatistics();
+    }, [fetchStatistics]);
 
     // Handling progress animation for each stat
     useEffect(() => {

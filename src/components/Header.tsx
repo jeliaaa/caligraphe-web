@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     ];
 
     return (
-        <header className='w-full flex flex-col sticky bg-white shadow-md'>
+        <header className='w-full flex flex-col sticky bg-white shadow-md z-50'> {/* Added z-50 */}
             <div className='w-full py-3 px-5 flex justify-between items-center'>
                 <Link to={'/'}>
                     <img src={logo} className='w-[70px] aspect-square' alt='...' />
