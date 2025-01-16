@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <div className='w-full min-h-[80dvh] py-5'>
+      <div className='w-full min-h-[80dvh]'>
         <Routes>
           <Route index path='/' element={<Main />} />
           <Route path='/track/:id' element={<Track />} />

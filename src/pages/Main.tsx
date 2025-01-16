@@ -1,10 +1,13 @@
 import React from 'react'
+import MainSlider from '../components/MainSlider'
+import StatisticSection from '../components/MainStats'
 
-type Props = {}
-
-const Main = (props: Props) => {
+const Main: React.FC = () => {
   return (
-    <div>Main</div>
+    <>
+      <MainSlider />
+      <StatisticSection />
+    </>
   )
 }
 

@@ -12,8 +12,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "outDir": "./build" // Ensure that the compiled files go to a different directory, not the `src` folder
+    "outDir": "./build",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["types/*"]
+    },
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/types/images.d.ts"],
   "exclude": ["node_modules", "build", "dist"]
 }

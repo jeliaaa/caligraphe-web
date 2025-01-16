@@ -1,54 +1,108 @@
-import React from 'react';
-import { FaFacebookMessenger, FaSearchLocation, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBars, FaFacebookMessenger, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { HiX } from 'react-icons/hi';
+import { BsPinFill } from 'react-icons/bs';
+import LanguageDropdown from './LanguageDropdown';
+import logo from "../assets/logos/logo.png";
+
 
 const Header: React.FC = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+
     const navigationList = [
-        {title: "მომსახურებები", to:'services'},
-        {title: "გალერეა", to:'gallery'},
-        {title: "დაანგარიშება", to:''},
-        {title: "ჩემი პროექტი", to:'track/0'},
-        {title: "სტატიები", to:''},
-        {title: "კონტაქტი", to:''},
-        {title: "ინფორმაცია", to:''},
+        { title: "მომსახურებები", to: 'services' },
+        { title: "გალერეა", to: 'gallery' },
+        { title: "დაანგარიშება", to: '' },
+        { title: "ჩემი პროექტი", to: 'track/0' },
+        { title: "სტატიები", to: '' },
+        { title: "კონტაქტი", to: '' },
+        { title: "ინფორმაცია", to: '' },
     ];
+
     const contacts = [
-        { color: "00FF00", icon: <FaWhatsapp size={45} color='#00FF00' />, title: "Whatsapp", link: "https://whatsapp.com" },
-        { color: "0000FF", icon: <FaFacebookMessenger size={45} color='#0000FF' />, title: "Messenger", link: "https://facebook.com" },
-        { color: "00115F", icon: <FaTelegram size={45} color='#00115F' />, title: "Phone", link: "tel:593933399" }
-    ]
+        { color: "00FF00", icon: <FaWhatsapp size={30} color='#00FF00' />, title: "Whatsapp", link: "https://whatsapp.com" },
+        { color: "0000FF", icon: <FaFacebookMessenger size={30} color='#0000FF' />, title: "Messenger", link: "https://facebook.com" },
+        { color: "00115F", icon: <FaTelegram size={30} color='#00115F' />, title: "Phone", link: "tel:593933399" }
+    ];
+
     return (
-        <header className='py-3 w-full flex flex-col sticky'>
-            <div className='w-full px-5 flex justify-between items-center'>
+        <header className='w-full flex flex-col sticky bg-white shadow-md'>
+            <div className='w-full py-3 px-5 flex justify-between items-center'>
                 <Link to={'/'}>
-                    <img src='https://picsum.photos/100' className='w-[100px] aspect-square' alt='...' />
+                    <img src={logo} className='w-[70px] aspect-square' alt='...' />
                 </Link>
-                <div className='bg-gray-100 rounded-3xl p-2 flex items-center gap-x-2'>
-                    <FaSearchLocation size={30} /> <span>ქ.ბათუმი სელიმ ხიმშიაშვილის ქ.N1</span>
-                </div>
-                <div className='flex flex-col'>
-                    <div className='flex gap-x-3'>
-                        {contacts.map((contact, _id) => (
-                            <Link to={contact.link} key={_id}>
-                                <div className="bg-gray-100 w-fit p-2 flex items-center justify-center aspect-square rounded-full hover:border-2" style={{ borderColor: contact.color }} >
-                                    {contact.icon}
-                                </div>
-                            </Link>
-                        ))}
+                <div className='hidden flex-col md:flex md:flex-row items-center gap-4 md:gap-6 px-5 md:px-0'>
+                    <div className='flex items-center text-white gap-x-2 bg-secondary-color rounded-3xl p-2'>
+                        <BsPinFill size={20} />
+                        <span>ქ.ბათუმი სელიმ ხიმშიაშვილის ქ.N1</span>
                     </div>
-                    <div className='w-full mt-2'>
-                        ტელეფონი: <Link className='underline' to="tel:555555555">+995 555555555</Link>
+                    <div className='flex-col items-start flex md:items-center'>
+                        <div className='flex gap-x-3'>
+                            {contacts.map((contact, _id) => (
+                                <Link to={contact.link} key={_id}>
+                                    <div
+                                        className="bg-gray-100 w-fit p-2 flex items-center justify-center aspect-square rounded-full hover:bg-slate-200"
+                                    >
+                                        {contact.icon}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                        <div className='w-full mt-2'>
+                            ტელეფონი: <Link className='underline' to="tel:555555555">+995 555555555</Link>
+                        </div>
                     </div>
+                    <LanguageDropdown />
                 </div>
-            </div>
-            <div className='w-full h-[70px] flex items-center justify-around bg-slate-800 text-white py-2'>
-                {navigationList.map((nav, _id) => (
-                    <Link to={nav.to} key={_id} className='h-full flex items-center justify-center px-3 border-x-2'>
-                        {nav.title}
-                    </Link>
-                ))}
+
+                <button className='md:hidden p-2' onClick={toggleMenu}>
+                    {menuOpen ? <HiX size={30} color='#1e293b' /> : <FaBars color='#1e293b' size={30} />}
+                </button>
             </div>
 
+            <div
+                className={`flex flex-col w-full bg-white md:sticky absolute z-10 transition-all duration-700 ${menuOpen ? 'top-[90px]' : 'top-[-1000%]'} md:top-auto`}
+            >
+                <div className='flex flex-col py-5 md:flex-wrap w-full md:items-center md:flex-row md:justify-evenly gap-y-4 md:gap-y-0 md:gap-x-3 bg-main-color text-white px-5 md:px-0'>
+                    {navigationList.map((nav, _id) => (
+                        <Link
+                            to={nav.to}
+                            key={_id}
+                            className='relative flex h-full text-center md:py-5 px-3 border-b md:border-0 border-main-color group'
+                        >
+                            {nav.title}
+                            {/* Hover underline */}
+                            <div className='hidden md:block absolute left-0 bottom-2 w-full h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300' />
+                        </Link>
+                    ))}
+                    <div className='flex flex-col gap-y-3 md:hidden '>
+                        <div className='flex items-center gap-x-2 bg-secondary-color  rounded-3xl p-2'>
+                            <BsPinFill color='white' size={20} />
+                            <span>ქ.ბათუმი სელიმ ხიმშიაშვილის ქ.N1</span>
+                        </div>
+                        <div className='flex-col items-start flex md:items-center'>
+                            <div className='flex gap-x-3'>
+                                {contacts.map((contact, _id) => (
+                                    <Link to={contact.link} key={_id}>
+                                        <div
+                                            className="bg-gray-100 w-fit p-2 flex items-center justify-center aspect-square rounded-full"
+                                        >
+                                            {contact.icon}
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className='w-full mt-2'>
+                                ტელეფონი: <Link className='underline' to="tel:555555555">+995 555555555</Link>
+                            </div>
+                            <LanguageDropdown />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
     );
 };
