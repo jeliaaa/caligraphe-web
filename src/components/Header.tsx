@@ -64,7 +64,7 @@ const Header: React.FC = () => {
             </div>
 
             <div
-                className={`flex flex-col w-full bg-white md:sticky absolute z-10 transition-all duration-700 ${menuOpen ? 'top-[90px]' : 'top-[-1000%]'} md:top-auto`}
+                className={`flex flex-col w-full bg-white md:sticky absolute z-50 transition-all duration-700 ${menuOpen ? 'top-[90px]' : 'top-[-1000%]'} md:top-auto`}
             >
                 <div className='flex flex-col py-5 md:flex-wrap w-full md:items-center md:flex-row md:justify-evenly gap-y-4 md:gap-y-0 md:gap-x-3 bg-main-color text-white px-5 md:px-0'>
                     {navigationList.map((nav, _id) => (
