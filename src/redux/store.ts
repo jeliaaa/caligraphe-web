@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import serviceReducer from "./slices/servicesReducer"
+import renovationReducer from "./slices/renovationReducer"
 const store = configureStore({
     reducer: {
-        services: serviceReducer
+        services: serviceReducer,
+        renovation: renovationReducer
     },
 });
 

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "../redux/store";
+import { fetchRenovation } from "../redux/thunks/renovationThunk";
 
 const Track = () => {
     const { id } = useParams();
     const [inputVal, setInputVal] = useState(id !== "0" ? id : ""); // Set initial value conditionally
     const [currentPhoto, setCurrentPhoto] = useState<number | null>(null); // State to track current photo in the slider
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { data, status } = useSelector((state: RootState) => state.renovation)
+    const isLoading = useMemo(() => status === 'loading' || status === 'idle', [status]);
+
+    useEffect(() => {
+        dispatch(fetchRenovation({ trackId: inputVal }) as any)
+    }, [dispatch, inputVal])
+    console.log(data);
 
     // Sample renovation data
     const renovationDetails = {
@@ -28,6 +40,8 @@ const Track = () => {
             navigate(`/track/0`);
         }
     };
+
+
 
     const keyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {

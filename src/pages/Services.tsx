@@ -14,7 +14,7 @@ const Services = (props: Props) => {
     }, [dispatch])
     return (
         <div>
-            {isLoading ? 'loading...' : data.map((elem: any) => (<div>a</div>))}
+            {isLoading ? 'loading...' : data.map((elem: any) => (<div key={elem.id}>{elem.name}</div>))}
         </div>
     )
 }
