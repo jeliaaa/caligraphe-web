@@ -5,21 +5,20 @@ import { HiX } from 'react-icons/hi';
 import { BsPinFill } from 'react-icons/bs';
 import LanguageDropdown from './LanguageDropdown';
 import logo from "../assets/logos/logo.png";
-
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-
     const toggleMenu = () => setMenuOpen(!menuOpen);
-
+    const { t } = useTranslation();
     const navigationList = [
-        { title: "მომსახურებები", to: 'services' },
-        { title: "გალერეა", to: 'gallery' },
-        { title: "დაანგარიშება", to: '' },
-        { title: "ჩემი პროექტი", to: 'track/0' },
-        { title: "სტატიები", to: '' },
-        { title: "კონტაქტი", to: '' },
-        { title: "ინფორმაცია", to: '' },
+        { title: "services", to: 'services' },
+        { title: "gallery", to: 'gallery' },
+        { title: "calculate", to: '' },
+        { title: "myProject", to: 'track/0' },
+        { title: "blog", to: '' },
+        { title: "contactUs", to: '' },
+        { title: "info", to: '' },
     ];
 
     const contacts = [
@@ -59,7 +58,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <button className='md:hidden p-2' onClick={toggleMenu}>
-                    {menuOpen ? <HiX size={30} color='#1e293b' /> : <FaBars color='#1e293b' size={30} />}
+                    {menuOpen ? <HiX size={30} color='#2c3424' /> : <FaBars color='#2c3424' size={30} />}
                 </button>
             </div>
 
@@ -73,7 +72,7 @@ const Header: React.FC = () => {
                             key={_id}
                             className='relative flex h-full text-center md:py-5 px-3 border-b md:border-0 border-main-color group'
                         >
-                            {nav.title}
+                            {t(`${nav.title}`)}
                             {/* Hover underline */}
                             <div className='hidden md:block absolute left-0 bottom-2 w-full h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300' />
                         </Link>

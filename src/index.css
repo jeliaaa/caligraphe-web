@@ -3,9 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --main-color: #1e293b;
-  --secondary-color: #bb9e35c9;
+  --main-color: #2c3424;
+  --secondary-color: #959581;
 }
+
+/* 
+#2c3424
+#4c583e
+#768064
+#959581
+#daded8 */
 
 /* Corrected @font-face definition */
 @font-face {

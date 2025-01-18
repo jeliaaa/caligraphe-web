@@ -3,6 +3,7 @@ import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import Track from './pages/Track';
+import Services from './pages/Services';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route index path='/' element={<Main />} />
           <Route path='/track/:id' element={<Track />} />
+          <Route path='/services' element={<Services />} />
         </Routes>
       </div>
     </div>

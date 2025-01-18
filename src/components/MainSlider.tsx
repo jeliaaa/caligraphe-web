@@ -11,6 +11,12 @@ const MainSlider: React.FC = () => {
     const SLIDE_DURATION = 5000; // 5 seconds per slide
     const swiperRef = useRef<any>(null);  // Reference to the Swiper instance
 
+    const sliderContent = [
+        { positionX: 'start', positionY: 'end', paragraph: 'ჩვენი დიზაინ სტუდია არის თქვენი ოცნებების რეალიზაციის ადგილი! ვიზრუნებთ, რომ თქვენი სახლის თითოეული დეტალი იყოს უნიკალური, კომფორტული და თანამედროვე.', img: '' },
+        { positionX: 'start', positionY: 'start', paragraph: 'წარმატებული დიზაინი იწყება ჩვენს გუნდთან! ჩაერთეთ ახალ პროექტებში და იხილეთ, როგორ გარდაიქმნება თქვენი სახლი სითბოს, ელეგანტურობისა და სტილის მეშვეობით.', img: '' },
+        { positionX: 'center', positionY: 'center', paragraph: 'წარმატებული, სანდო, საიმედო გუნდი მუდამ თქვენს სამსახურში!', img: '' }
+    ]
+
     useEffect(() => {
         const interval = setInterval(() => {
             setProgress((prev) => {
@@ -60,15 +66,12 @@ const MainSlider: React.FC = () => {
                         {Math.floor(progress / 20)}
                     </span>
                 </div>
-                {[0, 1, 2, 3, 4].map((elem) => (
-                    <SwiperSlide key={elem}>
-                        <div className='w-full flex justify-end p-7 bg-center bg-no-repeat h-[70dvh] bg-cover' style={{ backgroundImage: `url(${mainBanner})` }}>
-                            <div className='bg-white rounded-ss-[100px] rounded-ee-[100px] shadow-2xl shadow-main-color h-fit xl:w-1/2 '>
+                {sliderContent.map((elem, _id) => (
+                    <SwiperSlide key={_id}>
+                        <div className={`w-full flex items-${elem.positionY} justify-${elem.positionX} p-7 bg-center bg-no-repeat h-[70dvh] bg-cover`} style={{ backgroundImage: `url(${mainBanner})` }}>
+                            <div className='bg-white rounded-ss-[50px] rounded-md shadow-2xl shadow-main-color h-fit xl:w-1/2 '>
                                 <p className='m-10'>
-                                    ლორემ იპსუმ როკომ დაგვიანებულ მენახოს დაჰკარგვიათ მარნის მოგდევს ყოყმანობდა...
-                                    ლორემ იპსუმ როკომ დაგვიანებულ მენახოს დაჰკარგვიათ მარნის მოგდევს ყოყმანობდა...
-                                    ლორემ იპსუმ როკომ დაგვიანებულ მენახოს დაჰკარგვიათ მარნის მოგდევს ყოყმანობდა...
-
+                                    {elem.paragraph}
                                 </p>
                             </div>
                         </div>

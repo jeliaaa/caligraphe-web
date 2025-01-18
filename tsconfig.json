@@ -12,12 +12,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "outDir": "./build",
-    "baseUrl": "./src",
-    "paths": {
-      "*": ["types/*"]
-    },
+    "outDir": "./build"
   },
-  "include": ["src/**/*", "src/types/images.d.ts"],
+  "include": ["src/**/*", "src/types/images.d.ts", "src/types/i18n.d.ts"],
   "exclude": ["node_modules", "build", "dist"]
 }
