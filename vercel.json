@@ -17,7 +17,7 @@
     ],
     "env": {
         "NODE_ENV": "production",
-        "NPM_FLAGS": "--legacy-peer-deps"
+        "NPM_FLAGS": "--force"
     },
     "build": {
         "env": {
